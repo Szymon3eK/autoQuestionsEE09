@@ -11,3 +11,7 @@ Link odrazu do rozwiazanych pytan: https://github.com/Szymon3eK/autoQuestionsEE0
 # Screeny
 <img src = "./screenshots/1.png">
 <img src = "./screenshots/2.png">
+
+# Problemy z skryptem (pisany aby byl, nie chcialo mi sie naprawiac tych bledow XDDD)
+  - niestety nie odczytuje zdjec w pytaniach poniewaz AI jeszcze nie jest tak rozwiniete
+  - niekiedy ai zle generuje pliki .JSON np. z znakiem " w srodku przez to program sie wywala. Ale wlaczenie programu ponownie powinno zalatwic sprwae

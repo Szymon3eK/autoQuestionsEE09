@@ -1,5 +1,5 @@
 # autoQuestionsEE09
-Latwy skrypt do rozwiazywania pytan
+Latwy skrypt do rozwiazywania pytan<br>
 Link odrazu do rozwiazanych pytan: https://github.com/Szymon3eK/autoQuestionsEE09/blob/master/output/answers.txt
 # Jak uzywac?
 1. pobierz to repo

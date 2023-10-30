@@ -3879,4 +3879,10 @@ instrukcją
     
     854. W ramce przedstawiono zapisane w języku CSS formatowanie selektora. Zakładając, że żadne inne formatowanie nie jest dodane, wskaż sposób formatowania znaczniki h1 // pytanie posiada zdjecie D:
 
+    100. Kod: SELECT imie, pesel, wiek FROM dane WHERE wiek IN (18,30) spowoduje wybranie:
+    A. imion, nazwisk i numerów PESEL osób w wieku poniżej 18 lat // Wynik zapytania SELECT imie, pesel, wiek FROM dane WHERE wiek IN (18,30) to lista osób, które mają 18 lub 30 lat. W zwróconej liście znajdują się imiona, numery PESEL i wiek tych osób.
+    B. imion, numerów PESEL i wieku osób z przedziału od 18 do 30 lat // Wynik zapytania SELECT imie, pesel, wiek FROM dane WHERE wiek IN (18,30) to lista osób, które mają wiek pomiędzy 18 a 30 lat. W zwróconej liście znajdują się imiona, numery PESEL i wiek tych osób.
+    C. imion, numerów PESEL i wieku osób posiadających powyżej 30 lat // Wynik zapytania SELECT imie, pesel, wiek FROM dane WHERE wiek IN (18,30) to lista osób, które mają wiek powyżej 30 lat. W zwróconej liście znajdują się imiona, numery PESEL i wiek tych osób.
+    D. imion, numerów PESEL i wieku osób w wieku równym 18 lub 30 lat // Wynik zapytania SELECT imie, pesel, wiek FROM dane WHERE wiek IN (18,30) to lista osób, które mają 18 lub 30 lat. W zwróconej liście znajdują się imiona, numery PESEL i wiek tych osób.
+    
     

@@ -14,10 +14,23 @@ const openai = new OpenAI({
 
 var args = process.argv;
 
+
 if(!args[2]) {
-  console.log('musisz podac numer pytania od ktorego chcesz zaczac (node index.js [numer])');
+  console.log("Nie podales liczby!. Poprawne uzycie komendy: node index.js <numer pytania od którego ma zacząć>")
+} else if (isNaN(args[2])) {
+  console.log("Musi byc liczba! Poprawne uzycie komendy: node index.js <numer pytania od którego ma zacząć>")
 } else {
-  console.log(`Zacznynam od pytania numer ${args[2]}`)
+  console.log(`
+  __                  __                                      
+ /  |      /         /  |                /    /               
+(___|     (___  ___ (   |      ___  ___ (___    ___  ___  ___ 
+|   )|   )|    |   )|  \)|   )|___)|___ |    | |   )|   )|___ 
+|  / |__/ |__  |__/ |__/\|__/ |__   __/ |__  | |__/ |  /  __/               
+
+https://github.com/Szymon3eK
+
+  \n`)
+  console.log(`Zacznynam od pytania numer ${args[2]}`);
   main(args[2] - 1);
 }
 
@@ -25,18 +38,25 @@ if(!args[2]) {
 async function main(firstnumber) {
     await puppeteer.launch({headless: "new"}).then(async browser => {
         const page = await browser.newPage();
-        await page.goto('https://www.praktycznyegzamin.pl/inf03ee09e14/teoria/wszystko/');
+        await page.goto(config.web);
 
         await page.waitForSelector('#cnt-wrapper > div.container-wrapper > div > div > .question');
     
         const questions = await getAllQuestions(page, browser);
         await browser.close();
 
-        for (i = firstnumber; i <= questions.length; i++) {
+        if(firstnumber > questions.length) {
+          console.log("Nie ma tylu pytan! Zmniejsz liczbe!")
+          return
+        }
+
+
+        for (i = firstnumber; i < questions.length; i++) {
+
           if(!questions[i].ERR) {
             var prompt = `
             Napisze ci poniżej pytanie oraz 4 odpowiedzi wraz z poprawną odpowiedzia.
-            Twoim zadaniem jest opisać te punkty co robia i jak działają w krótki, prosty oraz przystępny sposób.
+            Twoim zadaniem jest opisać te punkty bez używania znaku " co robia i jak działają w krótki, prosty oraz przystępny sposób.
     
             ${questions[i].Q}
             ${questions[i].A}
@@ -56,7 +76,7 @@ async function main(firstnumber) {
             `
     
             console.log(prompt)
-            console.log('----------------------');
+            console.log('----------------------=====================---------------------------');
     
             const chatCompletion = await openai.chat.completions.create({
               messages: [{ role: 'user', content: prompt }],
@@ -73,9 +93,9 @@ async function main(firstnumber) {
     
             console.log(inputtable)
     
-            var chatgpttable = JSON.parse(chatCompletion.choices[0].message.content);
-    
-            await writeIntoNotepad(inputtable, chatgpttable);
+              var chatgpttable = JSON.parse(chatCompletion.choices[0].message.content);
+              await writeIntoNotepad(inputtable, chatgpttable);
+
           } else {
             writeIntoNotepadError(questions[i].Q)
           }

@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const config = require('../config.json');
 
 async function getAllQuestions(page, browser) {
     var questions = page.evaluate(() => {
@@ -32,7 +33,7 @@ async function getAllQuestions(page, browser) {
 
         return tablica;
     })
-
+    console.log(`Pobrano pytania z strony: ${config.web}`)
     return questions;
 }
 
